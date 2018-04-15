@@ -1,0 +1,49 @@
+U.S. food supply:  Nutrients and other food components, per capita per day1"
+
+
+0 - Year
+* Kilo-Calories
+ 1 - Food Energy 
+* Grams
+ 2 - Carbohydrates
+ 3 - Protein
+Fats ----------------
+ 4 - total fat
+ 5 - saturated
+ 6 - monounsaturated
+ 7 - polyunsaturated
+---------------------
+* Milligrams
+ 8 - cholesterol
+* Grams
+ 9 - dietary fiber
+Vitamins ------------
+* Micrograms RE
+10 - Vitamin A (RE)
+* Micrograms RAE
+11 - Vitamin A (RAE)
+* Milligrams Alpha-TE
+12 - Carotene
+* Milligrams
+13 - Vitamin E
+14 - Vitamin C
+15 - Thiamin
+16 - Riboflavin
+17 - Niacin
+18 - Vitamin B6
+* Micrograms
+19 - Folate (DFE)
+20 - Vitamin B12
+Minerals-------------
+* Milligrams
+21 - Calcium
+22 - Phosphorus
+23 - Magnesium
+24 - Iron
+25 - Zinc
+26 - Copper
+27 - Potassium
+* Micrograms
+28 - Selenium
+* Milligrams
+29 - Sodium

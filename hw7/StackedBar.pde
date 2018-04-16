@@ -5,8 +5,8 @@ public class StackedBar extends Bar{
   protected LABColor lc2;
   protected int yScale;
   
-  public StackedBar(int x, int y, int barWidth, int yScale, color c1, color c2, ArrayList<Integer> barVals){
-    super(x, y, barWidth, 100*yScale, c1);
+  public StackedBar(int x, int y, int barWidth, color c1, color c2, ArrayList<Integer> barVals){
+    super(x, y, barWidth, 100, c1);
     this.barVals = normalizeAllValues(barVals);
     this.lc2 = new LABColor(c2);
     this.yScale = yScale;
@@ -16,14 +16,20 @@ public class StackedBar extends Bar{
     int min = Collections.min(values);
     int max = Collections.max(values);
     for (int i = 0; i < values.size(); i++){
-      normalized.add(normalize(values.get(i), min, max));
+      normalized.add(normalize(values.get(i), max, min));
+      
     }
+    System.out.println(normalized.toString());
+    System.out.println(values.toString());
+    //System.out.println(min);
+    //System.out.println(max);
     return normalized;
   }
   private float normalize(int x, int max, int min){
     float a = (float) x;
     float b = (float) max;
     float c = (float) min;
+    System.out.println((a-0)/(100-0));
     return (a-c)/(b-c);
   }
   
@@ -33,10 +39,13 @@ public class StackedBar extends Bar{
     int xStart = -barWidth/2;
     int yStart = 0;
     for (int i = 0; i < barVals.size(); i++){
-      int barSize = barVals.get(i).intValue()*yScale;
-      rect(xStart, yStart, barWidth, barSize);
-      yStart += barSize;
+      fill(lc.lerp(lc2, (float) i/ (float) barVals.size()).rgb);
+      int barSize = (int) (barVals.get(i)*yScale);
+      rect(xStart, yStart, barWidth, -barSize);
+      yStart -= barSize;
+      System.out.println();
     }
+    
     translate(-x, -y);
   }
 }

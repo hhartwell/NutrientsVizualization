@@ -76,7 +76,7 @@ public class Graph{
     translate(-x, -y);
   }
   
-  private void drawAxis(){
+  protected void drawAxis(){
     line(0, 0, xAxisLength, 0);
     line(0, 0, 0, -yAxisLength);
     incrementXAxis();

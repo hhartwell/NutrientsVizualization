@@ -1,15 +1,20 @@
 // Harvey Hartwell
 // Danielle Forrest
 Graph graph;
+ArrayList<Integer> vals;
 
 void setup(){
   size(700, 400);
   colorMode(HSB);
   String[] arr = {"word", "word2", "word3"};
-  ArrayList<Integer> vals = new ArrayList<Integer>();
-  vals.add(40);
-  vals.add(70);
-  vals.add(25);
+  ArrayList<ArrayList<Integer>> stackedArr = new ArrayList<ArrayList<Integer>>();
+  for (int i = 1; i < 5; i++){
+    vals = new ArrayList<Integer>();
+    vals.add(15*i);
+    vals.add(7*i);
+    vals.add(70/i);
+    stackedArr.add(vals);
+  }
   int pad = 50;
   
   // placement of the graph
@@ -20,10 +25,15 @@ void setup(){
   int xAxisLength = width-pad*2;
   int yAxisLength = height - pad*2;
   
-  
-  graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 100, vals, arr);
+  System.out.println(vals.toString());
+  graph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedArr, arr);
 }
 void draw(){
   background(200);
+  //StackedBar bar = new StackedBar(50, 200, 50, 50, color(255), color(255), vals);
+  //bar.drawBar();
   graph.drawGraph();
+  
+  
+  
 }

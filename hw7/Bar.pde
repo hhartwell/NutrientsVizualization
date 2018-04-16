@@ -4,13 +4,13 @@
 *   we decide to make the bars interactive
 */
 public class Bar{
-  private int x;
-  private int y;
+  protected int x;
+  protected int y;
   
-  private int barWidth;
-  private int barHeight;
+  protected int barWidth;
+  protected int barHeight;
   
-  LABColor lc;
+  protected LABColor lc;
   
   public Bar(int x, int y, int barWidth, int barHeight, color c){
     this.x = x;

@@ -2,24 +2,24 @@
 public class Graph{
   // position of the graph
   // to be used with translate
-  private int x;
-  private int y;
+  protected int x;
+  protected int y;
   
   // hard values for the graph
-  private int yMin;
-  private int yMax;
+  protected int yMin;
+  protected int yMax;
   
-  private int xAxisLength;
-  private int yAxisLength;
-  private int xAxisScale;
-  private int yAxisScale;
+  protected int xAxisLength;
+  protected int yAxisLength;
+  protected int xAxisScale;
+  protected int yAxisScale;
   
   StringList categories;
   ArrayList<Bar> bars;
   
   int padding;
   
-  public Graph(int x, int y, int xAxisLength, int yAxisLength, int yMin, int yMax, ArrayList<Integer> categoryValues, String ... categories){
+  public Graph(int x, int y, int xAxisLength, int yAxisLength, int yMin, int yMax, ArrayList categoryValues, String ... categories){
     this.x = x;
     this.y = y;
     
@@ -47,16 +47,17 @@ public class Graph{
     this.bars = buildBars(categoryValues);
     
   }
-  private ArrayList<Bar> buildBars(ArrayList<Integer> categoryValues){
+  
+  protected ArrayList buildBars(ArrayList categoryValues){
     //translate(x, y);
     ArrayList<Bar> bars = new ArrayList<Bar>();
     color c = color(180, 50, 50);
     for(int i = 0; i < categoryValues.size(); i++){
       // dimensions for the bars
       int barX = xAxisScale*i+(xAxisScale/2);
-      int barY = categoryValues.get(i)*yAxisScale;
+      int barY = (int) categoryValues.get(i)*yAxisScale;
       int barWidth = 40;
-      int barHeight = -categoryValues.get(i)*yAxisScale;
+      int barHeight = -(int)categoryValues.get(i)*yAxisScale;
       System.out.println(barX + ", " + barY);
       
       bars.add(new Bar(barX, 0, barWidth, barHeight, c));
@@ -64,6 +65,7 @@ public class Graph{
     //translate(-x, -y);
     return bars;
   }
+  
   
   public void drawGraph(){
     translate(x, y);
@@ -105,7 +107,7 @@ public class Graph{
       }
     }
   }
-  private void placeBars(){
+  protected void placeBars(){
     for (int i = 0; i < bars.size(); i++){
       bars.get(i).drawBar();
     }

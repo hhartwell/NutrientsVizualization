@@ -1,3 +1,5 @@
+// Harvey Hartwell
+// Danielle Forrest
 Graph graph;
 
 void setup(){

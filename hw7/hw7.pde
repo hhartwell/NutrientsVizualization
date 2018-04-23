@@ -1,5 +1,10 @@
 // Harvey Hartwell
 // Danielle Forrest
+
+// TODO: cycle through decades
+// TODO: timeline class
+// TODO: nutrient manager class
+
 Graph graph;
 ArrayList<Integer> vals;
 

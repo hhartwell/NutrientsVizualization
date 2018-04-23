@@ -12,6 +12,14 @@ public class Bar{
   
   protected LABColor lc;
   
+  /**
+  * public contructor
+  * @param int x - x position of the bar
+  * @param int y - y position of the bar
+  * @param int barWidth - width of the bar
+  * @param int barHeight - height of the bar
+  * @param color c - color that the bar will be filled with
+  */
   public Bar(int x, int y, int barWidth, int barHeight, color c){
     this.x = x;
     this.y = y;
@@ -21,7 +29,9 @@ public class Bar{
     
     this.lc = new LABColor(c);
   }
-  
+  /**
+  * funcion used to draw the bars
+  */
   public void drawBar(){
     translate(x, y);
     fill(lc.rgb);

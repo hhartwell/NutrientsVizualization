@@ -34,13 +34,14 @@ void setup(){
   System.out.println(vals.toString());
   graph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedArr, arr);
   timeline = new Timeline(x, xAxisLength);
+  
 }
 void draw(){
   background(200);
   //StackedBar bar = new StackedBar(50, 200, 50, 50, color(255), color(255), vals);
   //bar.drawBar();
-  //timeline.createTimeline(xAxisLength);
   timeline.createTimeline();
+ 
   graph.drawGraph();
   
   

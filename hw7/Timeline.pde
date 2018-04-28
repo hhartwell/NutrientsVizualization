@@ -29,6 +29,7 @@ public class Timeline{
   private float pad;
   private float scale;
   private float currSpan;
+  private float startSpan;
   public Timeline(int x, int xAxis){
     start = x;
     pad = x;
@@ -37,97 +38,54 @@ public class Timeline{
     currSpan = 0;
   }
   public void createTimeline(){
-    
+    startSpan = start;
     fill(255, 0, 0);
     
     //progressive era
-    
-    rect(start, 2, setSpan(0, progSpan), 16);
-    //pushMatrix();
-    //translate(60, -25);
-    //rotate(20);
-    //text(progressive, start + span, 30);
-    //popMatrix();
-    
+    setBar(progressive, progSpan);
+     
     //WWI
     fill(0, 0, 255);
-    //
-    rect(start, 2, setSpan(currSpan, WWISpan), 16);
-    //pushMatrix();
-    //translate(80, -50);
-    //rotate(20);
-    //text(WWI, start + span, 30);
-    //popMatrix();
+    setBar(WWI, WWISpan);
     
-    ////Roaring Twenties
-    //fill(255, 0, 0);
-    //setSpan(currSpan, twentySpan);
-    //rect(start, 2, currSpan, 16);
-    ////pushMatrix();
-    ////translate(110, -80);
-    ////rotate(20);
-    ////text(twenties, start + span, 30);
-    ////popMatrix();
+    //Roaring Twenties
+    fill(255, 0, 0);
+    setBar(twenties, twentySpan);
     
-    ////Great Depression
-    //fill(0, 0, 255);
-    //setSpan(currSpan, depressSpan);
-    //rect(start, 2, currSpan, 16);
-    ////pushMatrix();
-    ////translate(145, -127);
-    ////rotate(20);
-    ////text(depression, start + span, 30);
-    ////popMatrix();
+     //Great Depression
+    fill(0, 0, 255);
+    setBar(depression, depressSpan);
     
-    ////WWII
-    //fill(255, 0, 0);
-    //setSpan(currSpan, WWIISpan);
-    //rect(start, 2, currSpan, 16);
-    ////pushMatrix();
-    ////translate(170, -180);
-    ////rotate(20);
-    ////text(WWII, start + span, 30);
-    ////popMatrix();
+    //WWII
+    fill(255, 0, 0);
+    setBar(WWII, WWIISpan);
     
-    ////Post-War Boom
-    //fill(0, 0, 255);
-    //setSpan(currSpan, boomSpan);
-    //rect(start, 2, currSpan, 16);
-    ////pushMatrix();
-    ////translate(210, -215);
-    ////rotate(20);
-    ////text(boom, start + span, 30);
-    ////popMatrix();
+    //Post-War Boom
+    fill(0, 0, 255);
+    setBar(boom, boomSpan);
     
-    ////Vietnam War
-    //fill(255, 0, 0);
-    //setSpan(currSpan, vietnamSpan);
-    //rect(start, 2, currSpan, 16);
-    ////pushMatrix();
-    ////translate(260, -290);
-    ////rotate(20);
-    ////text(vietnam, start + span, 30);
-    ////popMatrix();
+    //Vietnam War
+    fill(255, 0, 0);
+    setBar(vietnam, vietnamSpan);
     
-    ////information age
-    //fill(0, 0, 255);
-    //setSpan(currSpan, infoSpan);
-    //rect(start, 2, currSpan, 16);
-    ////pushMatrix();
-    ////translate(370, -380);
-    ////rotate(20);
-    ////text(infoAge, start + span, 30);
-    ////popMatrix();
+    //information age
+    fill(0, 0, 255);
+    setBar(infoAge, infoSpan);
     
     strokeWeight(2);
     line(pad, 0, pad, 20);
     line(pad, 10, end, 10);
     line(end, 0, end, 20);
   }
-  private float setSpan(float prevSpan, float yearSpan){
-    currSpan = yearSpan * scale;
-    start+= prevSpan;
-    return currSpan + start;
+  private void setBar(String eraName, float eraSpan){
+   
+    rect(startSpan, 2, eraSpan * scale, 16);
+    startSpan += eraSpan * scale;
+    pushMatrix();
+    translate(startSpan, -startSpan + 100);
+    rotate(20);
+    text(eraName, startSpan, 30);
+    popMatrix();
+    
   }
-  
 }

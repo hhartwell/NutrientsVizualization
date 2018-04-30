@@ -88,4 +88,14 @@ public class Timeline{
     popMatrix();
     
   }
+  public int getNutirentSelected(){
+    int i = 0;
+    return i;
+  }
+  public int getEraSelected(){
+    // eras go from 0-7
+    int i = 0;
+    return i;
+  }
+  
 }

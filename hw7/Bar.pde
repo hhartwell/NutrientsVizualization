@@ -7,6 +7,9 @@ public class Bar{
   protected int x;
   protected int y;
   
+  protected int xActual;
+  protected int yActual;
+  
   protected int barWidth;
   protected int barHeight;
   
@@ -20,10 +23,11 @@ public class Bar{
   * @param int barHeight - height of the bar
   * @param color c - color that the bar will be filled with
   */
-  public Bar(int x, int y, int barWidth, int barHeight, color c){
+  public Bar(int x, int y, int xActual, int yActual, int barWidth, int barHeight, color c){
     this.x = x;
     this.y = y;
-    
+    this.xActual = xActual;
+    this.yActual = yActual;
     this.barWidth = barWidth;
     this.barHeight = barHeight;
     
@@ -40,6 +44,21 @@ public class Bar{
     rect(xStart, yStart, barWidth, barHeight);
     translate(-x, -y);
     fill(0);
+    mouseOver();
   }
-  
+  public boolean mouseOver(){
+    if (mouseX > xActual - barWidth/2 && mouseX < xActual + barWidth/2 && mouseY < yActual && mouseY > yActual + barHeight){
+      return true;
+    }
+    else{ 
+      //translate(x, y);
+      return false;
+    }
+  }
+  @Override
+  public String toString(){
+    String s = "";
+    s += "x: " + x +" y: " + y + " | xActual: " + xActual + " yActual: " + yActual;
+    return s;
+  }
 }

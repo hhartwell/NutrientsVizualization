@@ -60,7 +60,7 @@ public class Graph{
     this.yAxisScale = yAxisLength / (yMax - yMin);
     
     this.bars = buildBars(categoryValues);
-    
+    //System.out.println(categoryValues);
   }
   /**
   * funtion used to build instances of the bars
@@ -76,9 +76,8 @@ public class Graph{
       int barY = (int) categoryValues.get(i)*yAxisScale;
       int barWidth = 40;
       int barHeight = -(int)categoryValues.get(i)*yAxisScale;
-      System.out.println(barX + ", " + barY);
-      
-      bars.add(new Bar(barX, 0, barWidth, barHeight, c));
+      bars.add(new Bar(barX, 0, x + barX, y, barWidth, barHeight, c));
+      //System.out.println(bars.get(i));
     }
     return bars;
   }

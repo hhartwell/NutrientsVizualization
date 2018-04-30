@@ -19,8 +19,8 @@ public class StackedBar extends Bar{
   * @param color c2 - color for the top bar (used in some linear interpolation)
   * @param ArrayList<Integer> barVals - integer value for each bar in the stacked bar
   */
-  public StackedBar(int x, int y, int barWidth, color c1, color c2, ArrayList<Integer> barVals){
-    super(x, y, barWidth, 100, c1);
+  public StackedBar(int x, int y, int xActual, int yActual, int barWidth, color c1, color c2, ArrayList<Integer> barVals){
+    super(x, y, xActual, yActual, barWidth, 100, c1);
     this.barVals = normalizeAllValues(barVals);
     this.lc2 = new LABColor(c2);
     this.yScale = yScale;
@@ -39,8 +39,8 @@ public class StackedBar extends Bar{
       normalized.add(normalize(values.get(i), max, min));
       
     }
-    System.out.println(normalized.toString());
-    System.out.println(values.toString());
+    //System.out.println(normalized.toString());
+    //System.out.println(values.toString());
     //System.out.println(min);
     //System.out.println(max);
     return normalized;
@@ -56,7 +56,7 @@ public class StackedBar extends Bar{
     float a = (float) x;
     float b = (float) max;
     float c = (float) min;
-    System.out.println((a-0)/(100-0));
+    //System.out.println((a-0)/(100-0));
     return (a-c)/(b-c);
   }
   /**
@@ -72,7 +72,7 @@ public class StackedBar extends Bar{
       int barSize = (int) (barVals.get(i)*yScale);
       rect(xStart, yStart, barWidth, -barSize);
       yStart -= barSize;
-      System.out.println();
+      //System.out.println();
     }
     
     translate(-x, -y);

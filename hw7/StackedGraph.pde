@@ -17,7 +17,7 @@ public class StackedGraph extends Graph{
   */
   public StackedGraph(int x, int y, int xAxisLength, int yAxisLength, ArrayList<ArrayList<Integer>> categoryValues, String ... categories){
     super(x, y, xAxisLength, yAxisLength, 0, 100, categoryValues, categories);
-    System.out.println(categoryValues.toString());
+    //System.out.println(categoryValues.toString());
     this.bars = buildBars(categoryValues);
   }
   /**
@@ -35,7 +35,7 @@ public class StackedGraph extends Graph{
     for (int i = 0; i < barValues.size(); i++){
       int barX = xAxisScale*i+(xAxisScale/2);
       int barWidth = 40;
-      newBars.add(new StackedBar(barX, 0, barWidth, c1, c2, arr.get(i)));
+      newBars.add(new StackedBar(barX, 0, barX + x, y, barWidth, c1, c2, arr.get(i)));
     }
     translate(-x, -y);
     return newBars;

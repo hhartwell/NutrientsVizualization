@@ -18,7 +18,7 @@ public class Graph{
   protected int xAxisScale;
   protected int yAxisScale;
   
-  StringList categories;
+  ArrayList<String> categories;
   ArrayList<Bar> bars;
   
   int padding;
@@ -34,7 +34,7 @@ public class Graph{
   * @param ArrayList<Integer> categoryValues - values for the elements in the bar chart
   * @param String[] categories  - names for each element in the bar chart
   */
-  public Graph(int x, int y, int xAxisLength, int yAxisLength, int yMin, int yMax, ArrayList categoryValues, String ... categories){
+  public Graph(int x, int y, int xAxisLength, int yAxisLength, int yMin, int yMax, ArrayList categoryValues, ArrayList<String> categories){
     this.x = x;
     this.y = y;
     
@@ -42,10 +42,7 @@ public class Graph{
     this.yMax = yMax;
     
     
-    this.categories = new StringList();
-    for (int i = 0; i < categories.length; i++){
-      this.categories.append(categories[i]);
-    }
+    this.categories = categories;
     
     // set x axis lenght and scale
     // x scale is defined categorically

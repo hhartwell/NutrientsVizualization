@@ -4,7 +4,13 @@
 // TODO: cycle through decades
 // TODO: timeline class
 // TODO: nutrient manager class
+<<<<<<< HEAD
 
+=======
+import java.utils.
+Graph stackedGraph;
+Graph graph;
+>>>>>>> 243f396ad83dcc3f14fbeb5b85e6c50fa3032635
 
 NutrientManager nutrientManager;
 ArrayList<Integer> vals;

@@ -15,7 +15,7 @@ public class StackedGraph extends Graph{
   * @param ArrayList<ArrayList<Integer> categoryValues - two dimensional Integer array for the data points in the graph. The first level represents each bar, and the second level represents each bars values
   * @param String[] categories  - names for each element in the bar chart
   */
-  public StackedGraph(int x, int y, int xAxisLength, int yAxisLength, ArrayList<ArrayList<Integer>> categoryValues, String ... categories){
+  public StackedGraph(int x, int y, int xAxisLength, int yAxisLength, ArrayList<ArrayList<Integer>> categoryValues, ArrayList<String> categories){
     super(x, y, xAxisLength, yAxisLength, 0, 100, categoryValues, categories);
     //System.out.println(categoryValues.toString());
     this.bars = buildBars(categoryValues);

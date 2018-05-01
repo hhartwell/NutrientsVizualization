@@ -140,4 +140,5 @@ public class Graph{
       bars.get(i).drawBar();
     }
   }
+  
 }

@@ -28,12 +28,14 @@ public class Timeline{
   private ArrayList<Float> spans;
   private ArrayList<String> eras;
   private ArrayList<EraBar> eraBars;
+  private ArrayList<Integer> eraYears;
+  private ArrayList<Integer> allEras;
   
   private float start;
   private float end;
   private float pad;
   private float scale;
-  private float currSpan;
+  //private float currSpan;
   private float startSpan;
   
   // x and y coords for the timeline
@@ -55,9 +57,10 @@ public class Timeline{
     pad = x;
     end = xAxis;
     scale = end/100;
-    currSpan = 0;
+    //currSpan = 0;
     c1 = new LABColor(color(255, 0, 0));
     c2 = new LABColor(color(0, 0, 255));
+    
     createEraBars();
   }
   
@@ -128,8 +131,8 @@ public class Timeline{
   * micro = 2;
   * default = 0;
   */
-  public int getNutirentSelected(){
-    int i = 0;
+  public int getNutrientSelected(){
+    int i = 1;
     return i;
   }
   
@@ -145,6 +148,7 @@ public class Timeline{
       if (eraBars.get(i).isSelected())
         selected = i;
     }
+    println("Selected" + selected);
     return selected;
   }
   public void drawEraBars(){
@@ -208,5 +212,25 @@ public class Timeline{
     eras.add(boom);
     eras.add(vietnam);
     eras.add(infoAge);
+    
+    eraYears = new ArrayList<Integer>();
+    eraYears.add(1909);
+    eraYears.add(1914);
+    eraYears.add(1920);
+    eraYears.add(1929);
+    eraYears.add(1939);
+    eraYears.add(1946);
+    eraYears.add(1960);
+    eraYears.add(1976);
+    
+    allEras = new ArrayList<Integer>();
+    allEras.add(0);
+    allEras.add(1);
+    allEras.add(2);
+    allEras.add(3);
+    allEras.add(4);
+    allEras.add(5);
+    allEras.add(6);
+    allEras.add(7);
   } 
 }

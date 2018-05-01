@@ -1,3 +1,4 @@
+import java.utils.Arrays;
 /**
 * class responsible for figuring out which era has been selected and what to do with that information
 * Specifically the class needs to communicate with the instance of the timeline, and then draw the correct graph based on that information
@@ -5,12 +6,24 @@
 */
 public class NutrientManager {
 private Table nutrients;
-timelineX, timelineY, xAxisLength
+Graph stackedGraph;
+Graph graph;
+private int x, y, xAxisLength, yAxisLength, timelineX, timelineY;
+private ArrayList<Integer> nutValues;
+float span;
   /**
   * public constructor
   */
-  public NutrientManager(){
+  public NutrientManager(int newX, int newY, int newXAxisLength, int newYAxisLength, int newTimelineX, int newTimelineY){
     nutrients = loadTable("nutrients.csv");
+    nutValues = new ArrayList<Integer>();
+    x = newX;
+    y = newY;
+    xAxisLength = newXAxisLength;
+    yAxisLength = newYAxisLength;
+    timelineX = newTimelineX;
+    timelineY = newTimelineY;
+    graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 100, nutValues, timeline.eras);
   //    String[] arr = {"word", "word2", "word3"};
   //ArrayList<ArrayList<Integer>> stackedArr = new ArrayList<ArrayList<Integer>>();
   //for (int i = 1; i < 5; i++){
@@ -19,40 +32,53 @@ timelineX, timelineY, xAxisLength
   //  vals.add(7*i);
   //  vals.add(70/i);
   //  stackedArr.add(vals);
-  //    int pad = 50;
-  
-  //// placement of the graph
-  //    int x = pad;
-  //    int y = 3*height/4 -pad;
-  
-  // dimensions of the graph
-  //int xAxisLength = width-pad*2;
-  //int yAxisLength = 3*height/4 - pad*2;
+ 
+
   //stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedArr, arr);
+  drawKCalGraph();
   }
     
-  }
+  
   /**
   * function used to draw the graph based on the information provided by the Timeline object
   */
   public void drawGraph(){
-    //get era
-    timeline.getEraSelected();
+    graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 100, nutValues, timeline.eras);
+    graph.drawGraph();
+ }
+ 
+   public void drawKCalGraph(){
+     for(int i = 0; i < timeline.allEras.size(); i ++){
+      nutValues.add(averageValue(timeline.allEras.get(i)));
+      println("Era number = " + timeline.allEras.get(i));
+    }
     
     
-    
-    
-      for (TableRow row : nutrients.rows()){
-        println(row.getInt(0));//year
-       
-     
-      }
-     
-  }
+   }
    
   //function to average year values
-  public int averageValue(){
-  return 1;
+  //How to get nutrients from specific span from table
+  public int averageValue(int era){
+    int startYear, startTabNum;
+    int average = 0;
+    if(era != -1){
+      span = timeline.spans.get(era);//get span of era
+      startYear = timeline.eraYears.get(era);//get starting year of era selected
+      startTabNum = startYear - 1908;
+      
+    }else{
+      println("error in timeline.spans");
+      span = 0;
+      startYear = 0;//get starting year of era selected
+      startTabNum = 0;
+      println(timeline.spans.get(0));
+    }
+    
+    for (int i = startTabNum; i < (startTabNum +span) ; i++){
+        average += nutrients.getRow(i).getInt(timeline.getNutrientSelected());
+    }
+   average = average/(int)span;
+   return average;
   }
   //function to take timeline parameters
   
@@ -60,6 +86,7 @@ timelineX, timelineY, xAxisLength
   * function used to update information in this class based on the Timeline object
   */
   public void updateManager(){
+    //this.drawGraph();
     
   }
   

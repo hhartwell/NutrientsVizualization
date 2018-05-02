@@ -7,15 +7,10 @@
 
 Graph stackedGraph;
 Graph graph;
+NutrientManager nutrientManager;
 
 ArrayList<Integer> vals;
 Timeline timeline;
-NutrientManager nutrientManager;
-int timelineX;
-int timelineY;
-int xAxisLength;
-int yAxisLength;
-int x, y;
 void setup(){
   size(700, 700);
   //colorMode(HSB);
@@ -32,20 +27,20 @@ void setup(){
   int pad = 50;
   
   // placement of the graph
-  x = pad;
-  y = 3*height/4 -pad;
+  int x = pad;
+  int y = 3*height/4 -pad;
   
   // dimensions of the graph
-  xAxisLength = width-pad*2;
-  yAxisLength = 3*height/4 - pad*2;
+  int xAxisLength = width-pad*2;
+  int yAxisLength = 3*height/4 - pad*2;
   
   //System.out.println(vals.toString());
   //stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedArr, arr);
   
   //graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 100, stackedArr.get(0), arr);
   
-  timelineX = x + pad;
-  timelineY = height - height/4;
+  int timelineX = x + pad;
+  int timelineY = height - height/4;
   
   timeline = new Timeline(timelineX, timelineY, xAxisLength);
   nutrientManager = new NutrientManager(x, y, xAxisLength, yAxisLength, timelineX, timelineY);
@@ -57,10 +52,8 @@ void draw(){
   //graph.drawGraph();
   
   //timeline.createTimeline();
-  
   timeline.drawEraBars();
   nutrientManager.drawGraph();
-  nutrientManager.updateManager();
   
 }
 void mouseClicked(){

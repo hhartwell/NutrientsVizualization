@@ -50,7 +50,7 @@ public class Timeline{
   * @param int y - y placement for the timeline
   * @param int xAxis - length of the timeline
   */
-  public Timeline(int x, int y, int xAxis){
+  public Timeline(int x, int y, float xAxis){
     this.x = x;
     this.y = y;
     start = x;

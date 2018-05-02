@@ -65,8 +65,8 @@ public class StackedBar extends Bar{
   @Override
   public void drawBar(){
     translate(x, y);
-    int xStart = -barWidth/2;
-    int yStart = 0;
+    float xStart = -barWidth/2;
+    float yStart = 0;
     for (int i = 0; i < barVals.size(); i++){
       fill(lc.lerp(lc2, (float) i/ (float) barVals.size()).rgb);
       int barSize = (int) (barVals.get(i)*yScale);

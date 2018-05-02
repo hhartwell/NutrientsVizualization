@@ -4,14 +4,14 @@
 *   we decide to make the bars interactive
 */
 public class Bar{
-  protected int x;
-  protected int y;
+  protected float x;
+  protected float y;
   
-  protected int xActual;
-  protected int yActual;
+  protected float xActual;
+  protected float yActual;
   
-  protected int barWidth;
-  protected int barHeight;
+  protected float barWidth;
+  protected float barHeight;
   
   protected LABColor lc;
   
@@ -23,7 +23,7 @@ public class Bar{
   * @param int barHeight - height of the bar
   * @param color c - color that the bar will be filled with
   */
-  public Bar(int x, int y, int xActual, int yActual, int barWidth, int barHeight, color c){
+  public Bar(float x, float y, float xActual, float yActual, float barWidth, float barHeight, color c){
     this.x = x;
     this.y = y;
     this.xActual = xActual;
@@ -39,8 +39,8 @@ public class Bar{
   public void drawBar(){
     translate(x, y);
     fill(lc.rgb);
-    int xStart = -barWidth/2;
-    int yStart = 0;
+    float xStart = -barWidth/2;
+    float yStart = 0;
     rect(xStart, yStart, barWidth, barHeight);
     translate(-x, -y);
     fill(0);

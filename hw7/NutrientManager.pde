@@ -11,6 +11,8 @@ Graph graph;
 private int x, y,timelineX, timelineY ;
 private int xAxisLength, yAxisLength; 
 private ArrayList<Integer> nutValues;
+private ArrayList<String> nutCategories;
+private ArrayList<String> macroArr;
 float span;
   /**
   * public constructor
@@ -18,6 +20,12 @@ float span;
   public NutrientManager(int newX, int newY, int newXAxisLength, int newYAxisLength, int newTimelineX, int newTimelineY){
     nutrients = loadTable("nutrients.csv");
     nutValues = new ArrayList<Integer>();
+    nutCategories = new ArrayList<String>();
+    macroArr = new ArrayList<String>();
+    macroArr.add("Calories");
+    macroArr.add("Carbohydrates");
+    macroArr.add("Protein");
+    macroArr.add("Fat");
     x = newX;
     y = newY;
     xAxisLength = newXAxisLength;
@@ -37,6 +45,7 @@ float span;
 
   //stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedArr, arr);
     drawKCalGraph();
+    drawMacroEraGraph();
   }
     
   
@@ -44,12 +53,13 @@ float span;
   * function used to draw the graph based on the information provided by the Timeline object
   */
   public void drawGraph(){
-    graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 50, nutValues, timeline.eras);
+    graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 50, nutValues, nutCategories);
     graph.drawGraph();
  }
  
    public void drawKCalGraph(){
      nutValues = new ArrayList<Integer>();
+     nutCategories = timeline.eras;
      for(int i = 0; i < timeline.allEras.size(); i ++){
       nutValues.add(averageValue(timeline.allEras.get(i), 1)/100);
       println("Era number = " + timeline.allEras.get(i));
@@ -58,11 +68,15 @@ float span;
     
    }
      public void drawMacroEraGraph(){
-     int era = timeline.getEraSelected();
+       int era ;
+       nutCategories = macroArr;
+       if(timeline.getEraSelected() != -1){
+        era = timeline.getEraSelected();
+       }else
+       era = 0;
      nutValues = new ArrayList<Integer>();
      for(int i = 1; i < 5; i ++){
       nutValues.add(averageValue(era, i)/100);
-      println("Era number = " + timeline.allEras.get(i));
      }
     println(nutValues.toString());
     
@@ -88,8 +102,9 @@ float span;
     for (int i = startTabNum; i < (startTabNum +span) ; i++){
         average += nutrients.getRow(i).getInt(nut);
     }
-    
+    if (span != 0){
    average = average/(int)span;
+    }
    return average;
   }
   //function to take timeline parameters

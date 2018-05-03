@@ -19,6 +19,7 @@ public class Graph{
   protected int yAxisScale;
   
   ArrayList<String> categories;
+  ArrayList<Integer> values;
   ArrayList<Bar> bars;
   
   int padding;
@@ -43,7 +44,7 @@ public class Graph{
     
     
     this.categories = categories;
-    
+    this.values = categoryValues;
     // set x axis lenght and scale
     // x scale is defined categorically
     //   according to the number of data points to be displayed
@@ -95,10 +96,14 @@ public class Graph{
   *helper function responsible for drawing the x and y axis and increment them
   */
   protected void drawAxis(){
+    fill(0);
     line(0, 0, xAxisLength, 0);
     line(0, 0, 0, -yAxisLength);
     incrementXAxis();
-    incrementYAxis();
+    if (categories.get(0) != "Carbohydrates")
+      incrementYAxis(100);
+    else
+      incrementYAxis(1);
   }
   /**
   * helper function that increments the x axis and labels each increment
@@ -122,14 +127,21 @@ public class Graph{
   /**
   * helper function responsible for incrementing the y axis and lable them
   */
-  private void incrementYAxis(){ 
+  private void incrementYAxis(int multiplier){ 
     int increment = 10;
     for (int i = 1; i <= yMax-yMin; i++){
       if(i%increment == 0){
         line (5, -yAxisScale*i, -5, -yAxisScale*i);
-        text(i, -20, -yAxisScale*i);
+        text(i * multiplier, -20, -yAxisScale*i);
       }
     }
+  }
+  private void labelGraph(String label){
+    translate(x, y);
+    int labelX = xAxisLength/2;
+    int labelY = 0;
+    text(label, labelX, labelY);
+    translate(-x, -y);
   }
   /**
   * helper function that exists purley for child class purposes

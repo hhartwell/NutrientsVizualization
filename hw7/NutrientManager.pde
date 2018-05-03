@@ -35,9 +35,8 @@ float span;
     timelineY = newTimelineY;
     graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 100, nutValues, timeline.eras);
     stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedNutValues, timeline.eras);
- 
-    drawKCalGraph();
     drawMacroEraGraph();
+    drawKCalGraph();
     drawNormStackGraph();
   }
     
@@ -48,11 +47,15 @@ float span;
   public void drawGraph(){
     graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 50, nutValues, nutCategories);
     graph.drawGraph();
+    graph.labelGraph();
     //stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedNutValues, timeline.eras);
     //stackedGraph.drawGraph();
     
  }
- 
+   private void labelGraph(){
+     graph.labelGraph(timeline.eras.get(timeline.getEraSelected()));  
+   }
+
    public void drawKCalGraph(){
      nutValues = new ArrayList<Integer>();
      nutCategories = timeline.eras;

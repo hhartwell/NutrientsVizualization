@@ -24,7 +24,7 @@ void setup(){
   int yAxisLength = 3*height/4 - pad*2;
   
   int timelineX = x + pad;
-  int timelineY = height - height/4;
+  int timelineY = height - height/5;
   
   timeline = new Timeline(timelineX, timelineY, xAxisLength);
   nutrientManager = new NutrientManager(x, y, xAxisLength, yAxisLength, timelineX, timelineY);

@@ -11,6 +11,7 @@ Graph graph;
 private int x, y,timelineX, timelineY ;
 private int xAxisLength, yAxisLength; 
 private ArrayList<Integer> nutValues;
+private ArrayList<ArrayList<Integer>> stackedNutValues;
 private ArrayList<String> nutCategories;
 private ArrayList<String> macroArr;
 float span;
@@ -20,9 +21,9 @@ float span;
   public NutrientManager(int newX, int newY, int newXAxisLength, int newYAxisLength, int newTimelineX, int newTimelineY){
     nutrients = loadTable("nutrients.csv");
     nutValues = new ArrayList<Integer>();
+    stackedNutValues = new ArrayList<ArrayList<Integer>>();
     nutCategories = new ArrayList<String>();
     macroArr = new ArrayList<String>();
-    macroArr.add("Calories");
     macroArr.add("Carbohydrates");
     macroArr.add("Protein");
     macroArr.add("Fat");
@@ -33,19 +34,11 @@ float span;
     timelineX = newTimelineX;
     timelineY = newTimelineY;
     graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 100, nutValues, timeline.eras);
-  //    String[] arr = {"word", "word2", "word3"};
-  //ArrayList<ArrayList<Integer>> stackedArr = new ArrayList<ArrayList<Integer>>();
-  //for (int i = 1; i < 5; i++){
-  //  vals = new ArrayList<Integer>();
-  //  vals.add(15*i);
-  //  vals.add(7*i);
-  //  vals.add(70/i);
-  //  stackedArr.add(vals);
+    stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedNutValues, timeline.eras);
  
-
-  //stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedArr, arr);
     drawKCalGraph();
     drawMacroEraGraph();
+    drawNormStackGraph();
   }
     
   
@@ -55,6 +48,9 @@ float span;
   public void drawGraph(){
     graph = new Graph(x, y, xAxisLength, yAxisLength, 0, 50, nutValues, nutCategories);
     graph.drawGraph();
+    //stackedGraph = new StackedGraph(x, y, xAxisLength, yAxisLength, stackedNutValues, timeline.eras);
+    //stackedGraph.drawGraph();
+    
  }
  
    public void drawKCalGraph(){
@@ -64,7 +60,6 @@ float span;
       nutValues.add(averageValue(timeline.allEras.get(i), 1)/100);
       println("Era number = " + timeline.allEras.get(i));
      }
-    println(nutValues.toString());
     
    }
      public void drawMacroEraGraph(){
@@ -75,11 +70,23 @@ float span;
        }else
        era = 0;
      nutValues = new ArrayList<Integer>();
-     for(int i = 1; i < 5; i ++){
-      nutValues.add(averageValue(era, i)/100);
+     for(int i = 2; i < 5; i ++){
+      nutValues.add(averageValue(era, i)/10);
      }
     println(nutValues.toString());
     
+   }
+   public void drawNormStackGraph(){
+     
+     stackedNutValues = new ArrayList<ArrayList<Integer>>();
+     ArrayList<Integer> vals = new ArrayList<Integer>();
+      for (int i = 0; i < timeline.eras.size(); i++){//eras
+        vals = new ArrayList<Integer>();
+        for(int j = 1; j < 5; j++){ //index of nutrients in table
+            vals.add(averageValue(i, j));
+        }
+        stackedNutValues.add(vals);
+      }
    }
   //function to average year values
   //How to get nutrients from specific span from table
@@ -114,7 +121,12 @@ float span;
   */
   public void updateManager(){
     //this.drawGraph();
-    
+    if(timeline.getEraSelected() == -1){
+      drawKCalGraph();
+     // drawNormStackGraph();
+    }else
+      drawMacroEraGraph();
+    drawGraph();
   }
   
 }
